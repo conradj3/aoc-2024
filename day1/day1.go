@@ -11,7 +11,7 @@ import (
 	"github.com/conradj3/aoc-2024/shared"
 )
 
-// Solve solves both parts of Day 1 and returns the results.
+// Solve solves both parts of Day 1 returning results
 func Solve(inputPath string) (int, int, error) {
 	leftList, rightList, err := readFile(inputPath)
 	if err != nil {

@@ -23,7 +23,7 @@ function Read-File {
 }
 
 # Function to calculate total distance (Part 1)
-function Calculate-TotalDistance {
+function Get-TotalDistance {
     param (
         [int[]]$leftList,
         [int[]]$rightList
@@ -43,7 +43,7 @@ function Calculate-TotalDistance {
 }
 
 # Function to calculate similarity score (Part 2)
-function Calculate-SimilarityScore {
+function Get-SimilarityScore {
     param (
         [int[]]$leftList,
         [int[]]$rightList
@@ -79,9 +79,9 @@ $leftList = $data.Left
 $rightList = $data.Right
 
 # Part 1: Calculate total distance
-$totalDistance = Calculate-TotalDistance -leftList $leftList -rightList $rightList
+$totalDistance = Get-TotalDistance -leftList $leftList -rightList $rightList
 Write-Output "Part 1 - Total Distance: $totalDistance"
 
 # Part 2: Calculate similarity score
-$similarityScore = Calculate-SimilarityScore -leftList $leftList -rightList $rightList
+$similarityScore = Get-SimilarityScore -leftList $leftList -rightList $rightList
 Write-Output "Part 2 - Similarity Score: $similarityScore"

@@ -71,7 +71,7 @@ function Get-SimilarityScore {
 }
 
 # Main Script Logic
-$filePath = "../day1/input.txt"  # Change this to your input file path
+$filePath = "../../day1/input.txt"  # Change this to your input file path
 
 # Read the input file
 $data = Read-File -filePath $filePath

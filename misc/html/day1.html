@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1: Historian Hysteria</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 10px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+        .output {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Day 1: Historian Hysteria</h1>
+    <p>Paste your input data below (two columns of numbers separated by spaces):</p>
+    <textarea id="inputData"></textarea>
+    <button onclick="calculatePart1()">Calculate Part 1</button>
+    <button onclick="calculatePart2()">Calculate Part 2</button>
+
+    <div class="output">
+        <p id="outputPart1"></p>
+        <p id="outputPart2"></p>
+    </div>
+
+    <script>
+        // Function to parse the input data into two arrays
+        function parseInput(input) {
+            const leftList = [];
+            const rightList = [];
+            const lines = input.trim().split("\n");
+            lines.forEach(line => {
+                const [left, right] = line.trim().split(/\s+/).map(Number);
+                leftList.push(left);
+                rightList.push(right);
+            });
+            return { leftList, rightList };
+        }
+
+        // Part 1: Calculate Total Distance
+        function calculatePart1() {
+            const input = document.getElementById("inputData").value;
+            const { leftList, rightList } = parseInput(input);
+
+            // Sort the lists
+            leftList.sort((a, b) => a - b);
+            rightList.sort((a, b) => a - b);
+
+            // Calculate total distance
+            let totalDistance = 0;
+            for (let i = 0; i < leftList.length; i++) {
+                totalDistance += Math.abs(leftList[i] - rightList[i]);
+            }
+
+            // Display result
+            document.getElementById("outputPart1").textContent = `Part 1 - Total Distance: ${totalDistance}`;
+        }
+
+        // Part 2: Calculate Similarity Score
+        function calculatePart2() {
+            const input = document.getElementById("inputData").value;
+            const { leftList, rightList } = parseInput(input);
+
+            // Create a frequency map for the right list
+            const rightCounts = {};
+            rightList.forEach(num => {
+                rightCounts[num] = (rightCounts[num] || 0) + 1;
+            });
+
+            // Calculate similarity score
+            let similarityScore = 0;
+            leftList.forEach(num => {
+                if (rightCounts[num]) {
+                    similarityScore += num * rightCounts[num];
+                }
+            });
+
+            // Display result
+            document.getElementById("outputPart2").textContent = `Part 2 - Similarity Score: ${similarityScore}`;
+        }
+    </script>
+</body>
+</html>
